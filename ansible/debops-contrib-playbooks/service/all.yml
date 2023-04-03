@@ -41,7 +41,6 @@
 
 - name: Configure X2Go Server
   import_playbook: x2go_server.yml
-||||||| parent of a026e3ca4 ([dnsmasq] Make use of the new debops.apparmor role)
 - import_playbook: apt_cacher_ng.yml
 - import_playbook: bitcoind.yml
 - import_playbook: btrfs.yml
