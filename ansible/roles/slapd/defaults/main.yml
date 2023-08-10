@@ -1076,8 +1076,6 @@ slapd__structure_tasks:
     objectClass: 'organizationalRole'
     attributes:
       cn: 'Hidden Object Viewer'
-      member:
-        '{{ (["cn=Hidden Objects", "ou=Groups"] + slapd__base_dn) | join(",") }}'
       description: 'LDAP objects which can see hidden objects'
 
   - name: 'Create cn=Hidden Objects group'
