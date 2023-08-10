@@ -1,6 +1,8 @@
-# groupofentries.schema - Add an alternative groupOfNames LDAP object
+dn: cn=debops,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: debops
+# debops.schema - Define base object identifiers for DebOps LDAP schemas
 #
-# Copyright (C) 2007 Andrew Findlay <andrew.findlay@skills-1st.co.uk>
 # Copyright (C) 2020 Maciej Delmanowski <drybjed@gmail.com>
 # Copyright (C) 2020 DebOps <https://debops.org/>
 # SPDX-License-Identifier: MIT
@@ -22,18 +24,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-# This LDAP schema defines the "groupOfEntries" LDAP object, which is an
-# alternative to the "groupOfNames" object. The new groupOfEntries object can
-# be used to create empty groups that don't contain any members.
-
-# Based on: https://tools.ietf.org/html/draft-findlay-ldap-groupofentries-00
-
-# Definition of the groupOfEntries LDAP object
-objectClass ( 1.2.826.0.1.3458854.2.1.1.1
-              NAME 'groupOfEntries'
-              DESC 'a group of names (DNs), can be empty'
-              SUP top STRUCTURAL
-              MUST cn
-              MAY ( member $ businessCategory $ seeAlso $
-                    owner $ ou $ o $ description ) )
+# The Private Enterprise Number of the DebOps project registered at IANA
+# https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers
+olcObjectIdentifier: DebOps 1.3.6.1.4.1.53622
+# The DebOps project LDAP namespace
+olcObjectIdentifier: DebOpsLDAP DebOps:42

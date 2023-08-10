@@ -49,69 +49,69 @@ slapd__default_schemas:
 
   # Base schema for LDAP schemas developed in DebOps, other custom schemas will
   # depend on object identifiers defined here
-  - '{{ slapd__debops_schema_path + "/debops.schema" }}'
+  - '{{ slapd__debops_schema_path + "/debops.ldif" }}'
 
   # Custom DebOps schema that defines the missing 'gid' posixGroup attribute
-  - '{{ slapd__debops_schema_path + "/posixgroupid.schema" }}'
+  - '{{ slapd__debops_schema_path + "/posixgroupid.ldif" }}'
 
   # Custom DebOps schema that creates LDAP object definitions used for tracking
   # the next available POSIX UID/GID numbers
-  - '{{ slapd__debops_schema_path + "/nextuidgid.schema" }}'
+  - '{{ slapd__debops_schema_path + "/nextuidgid.ldif" }}'
 
   # Custom DebOps schema that creates LDAP object definition of the
   # 'organizationalStructure' object, used to define basic directory structure.
-  - '{{ slapd__debops_schema_path + "/orgstructure.schema" }}'
+  - '{{ slapd__debops_schema_path + "/orgstructure.ldif" }}'
 
   # Password Policy schema, included in the 'slapd' APT package
-  - '/etc/ldap/schema/ppolicy.schema'
+  - '/etc/ldap/schema/ppolicy.ldif'
 
   # Support for 'host' and 'authorizedService' attributes, useful for granular
   # access control to services and machines
-  - '/etc/ldap/schema/fusiondirectory/ldapns.schema'
+  - '/etc/ldap/schema/gosa/ldapns.ldif'
 
   # Custom schema which defines a 'groupOfEntries' LDAP object which can create
   # empty groups
-  - '{{ slapd__debops_schema_path + "/groupofentries.schema" }}'
+  - '{{ slapd__debops_schema_path + "/groupofentries.ldif" }}'
 
   # Support for SSH public keys in LDAP directory
-  - '{{ slapd__debops_schema_path + "/openssh-lpk.schema" }}'
+  - '{{ slapd__debops_schema_path + "/openssh-lpk.ldif" }}'
 
   # Support for 'sudo' rules in LDAP directory
-  - '/etc/ldap/schema/fusiondirectory/sudo.schema'
+  - '/etc/ldap/schema/gosa/sudo.ldif'
 
   # Support for 'eduPerson' and 'eduOrg' schema, included in DebOps
-  - '{{ slapd__debops_schema_path + "/eduperson.schema" }}'
+  - '{{ slapd__debops_schema_path + "/eduperson.ldif" }}'
 
   # Support for 'schac' schema, SCHema for ACademia
-  - '{{ slapd__debops_schema_path + "/schac.schema" }}'
+  - '{{ slapd__debops_schema_path + "/schac.ldif" }}'
 
   # Support for 'nextcloud' schema, included in DebOps
-  - '{{ slapd__debops_schema_path + "/nextcloud.schema" }}'
+  - '{{ slapd__debops_schema_path + "/nextcloud.ldif" }}'
 
   # Custom DebOps schema that defines mail-related LDAP objects and attributes
-  - '{{ slapd__debops_schema_path + "/mailservice.schema" }}'
+  - '{{ slapd__debops_schema_path + "/mailservice.ldif" }}'
 
   # Custom DebOps schema that adds support for Dynamic Groups maintained by AutoGroup overlay
-  - '{{ slapd__debops_schema_path + "/dyngroup.schema" }}'
+  - '{{ slapd__debops_schema_path + "/dyngroup.ldif" }}'
 
   # Base schema for FreeRADIUS LDAP objects, which defines objectIdentifiers
   # for other FreeRADIUS schema files included in DebOps
-  - '{{ slapd__debops_schema_path + "/freeradius.schema" }}'
+  - '{{ slapd__debops_schema_path + "/freeradius.ldif" }}'
 
   # FreeRADIUS RADIUS Client schema
-  - '{{ slapd__debops_schema_path + "/freeradius-client.schema" }}'
+  - '{{ slapd__debops_schema_path + "/freeradius-client.ldif" }}'
 
   # FreeRADIUS RADIUS Profile schema
-  - '{{ slapd__debops_schema_path + "/freeradius-profile.schema" }}'
+  - '{{ slapd__debops_schema_path + "/freeradius-profile.ldif" }}'
 
   # FreeRADIUS RADIUS Accounting schema
-  - '{{ slapd__debops_schema_path + "/freeradius-radacct.schema" }}'
+  - '{{ slapd__debops_schema_path + "/freeradius-radacct.ldif" }}'
 
   # FreeRADIUS DHCPv4 schema
-  - '{{ slapd__debops_schema_path + "/freeradius-dhcpv4.schema" }}'
+  - '{{ slapd__debops_schema_path + "/freeradius-dhcpv4.ldif" }}'
 
   # FreeRADIUS DHCPv6 schema
-  - '{{ slapd__debops_schema_path + "/freeradius-dhcpv6.schema" }}'
+  - '{{ slapd__debops_schema_path + "/freeradius-dhcpv6.ldif" }}'
 
                                                                    # ]]]
 # .. envvar:: slapd__schemas [[[
@@ -158,7 +158,7 @@ slapd__base_packages: [ 'slapd', 'ldap-utils', 'ssl-cert', 'libldap-common' ]
 #
 # List of APT packages to install in preparation to use ``rfc2307bis`` schema
 # instead of the ``nis`` schema.
-slapd__rfc2307bis_packages: [ 'fusiondirectory-schema' ]
+slapd__rfc2307bis_packages: [ 'gosa-schema' ]
 
                                                                    # ]]]
 # .. envvar:: slapd__schema_packages [[[
@@ -170,7 +170,7 @@ slapd__rfc2307bis_packages: [ 'fusiondirectory-schema' ]
 slapd__schema_packages:
 
   # Support for 'sudo' rules in LDAP
-  - 'fusiondirectory-plugin-sudo-schema'
+  - 'gosa-plugin-sudo-schema'
 
                                                                    # ]]]
 # .. envvar:: slapd__packages [[[

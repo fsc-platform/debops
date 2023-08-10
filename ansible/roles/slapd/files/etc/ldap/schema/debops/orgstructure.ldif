@@ -1,3 +1,6 @@
+dn: cn=orgstructure,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: orgstructure
 # orgstructure.schema - Object which helps define the base tree structure
 #
 # Copyright (C) 2021 Maciej Delmanowski <drybjed@gmail.com>
@@ -21,13 +24,10 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-
 # Depends upon:
 #     core.schema
 #     cosine.schema
 #     debops.schema
-
 # This LDAP schema defines the 'organizationalStructure' object, which is meant
 # to be used in base structure of the directory, for example to create such
 # objects as "ou=People,dc=example,dc=org" or "ou=Groups,dc=example,dc=org".
@@ -38,18 +38,14 @@
 # rules, for example to allow owners of a given object to modify it and its
 # subtrees, and managers to only allow modifications in the subtrees of a given
 # object.
-
-
 # The organizationalstructure.schema namespace
-objectIdentifier orgStructureSchema DebOpsLDAP:4
-
+olcObjectIdentifier: orgStructureSchema DebOpsLDAP:4
 # The organizationalstructure.schema object namespace
-objectIdentifier orgStructureSchemaObject orgStructureSchema:1
-
+olcObjectIdentifier: orgStructureSchemaObject orgStructureSchema:1
 # Definition of the organizationalStructure object
-objectClass ( orgStructureSchemaObject:1
-              NAME 'organizationalStructure'
-              DESC 'Object which defines the base structure of an organization'
-              SUP top STRUCTURAL
-              MAY ( o $ cn $ ou $ description $ owner $ manager $
-                    organizationalStatus $ uniqueIdentifier $ seeAlso ) )
+olcObjectClasses: ( orgStructureSchemaObject:1
+  NAME 'organizationalStructure'
+  DESC 'Object which defines the base structure of an organization'
+  SUP top STRUCTURAL
+  MAY ( o $ cn $ ou $ description $ owner $ manager $
+  organizationalStatus $ uniqueIdentifier $ seeAlso ) )

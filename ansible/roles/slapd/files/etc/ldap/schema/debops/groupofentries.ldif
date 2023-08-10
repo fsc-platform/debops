@@ -1,5 +1,9 @@
-# nextuidgid.schema - Helper LDAP objects that keep track of next UID/GID values
+dn: cn=groupofentries,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: groupofentries
+# groupofentries.schema - Add an alternative groupOfNames LDAP object
 #
+# Copyright (C) 2007 Andrew Findlay <andrew.findlay@skills-1st.co.uk>
 # Copyright (C) 2020 Maciej Delmanowski <drybjed@gmail.com>
 # Copyright (C) 2020 DebOps <https://debops.org/>
 # SPDX-License-Identifier: MIT
@@ -21,33 +25,15 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-
-# Based on: https://www.rexconsulting.net/ldap-protocol-uidnumber.html/
-
-# Depends upon:
-#     rfc2307bis.schema
-#     debops.schema
-
-
-# The nextuidgid.schema namespace
-objectIdentifier nextUidGid DebOpsLDAP:3
-
-# The nextuidgid.schema object namespace
-objectIdentifier nextUidGidObject nextUidGid:1
-
-# Definition of the object which tracks the next UID value
-objectClass ( nextUidGidObject:1
-              NAME 'uidNext'
-              DESC 'LDAP object which tracks the next available UID number'
-              SUP top STRUCTURAL
-              MUST ( cn $ uidNumber )
-              MAY description )
-
-# Definition of the object which tracks the next GID value
-objectClass ( nextUidGidObject:2
-              NAME 'gidNext'
-              DESC 'LDAP object which tracks the next available GID number'
-              SUP top STRUCTURAL
-              MUST ( cn $ gidNumber )
-              MAY description )
+# This LDAP schema defines the "groupOfEntries" LDAP object, which is an
+# alternative to the "groupOfNames" object. The new groupOfEntries object can
+# be used to create empty groups that don't contain any members.
+# Based on: https://tools.ietf.org/html/draft-findlay-ldap-groupofentries-00
+# Definition of the groupOfEntries LDAP object
+olcObjectClasses: ( 1.2.826.0.1.3458854.2.1.1.1
+  NAME 'groupOfEntries'
+  DESC 'a group of names (DNs), can be empty'
+  SUP top STRUCTURAL
+  MUST cn
+  MAY ( member $ businessCategory $ seeAlso $
+  owner $ ou $ o $ description ) )
