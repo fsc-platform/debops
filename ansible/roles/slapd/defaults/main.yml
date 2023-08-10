@@ -62,13 +62,6 @@ slapd__default_schemas:
   # 'organizationalStructure' object, used to define basic directory structure.
   - '{{ slapd__debops_schema_path + "/orgstructure.ldif" }}'
 
-  # Password Policy schema, included in the 'slapd' APT package
-  - '/etc/ldap/schema/ppolicy.ldif'
-
-  # Support for 'host' and 'authorizedService' attributes, useful for granular
-  # access control to services and machines
-  - '/etc/ldap/schema/gosa/ldapns.ldif'
-
   # Custom schema which defines a 'groupOfEntries' LDAP object which can create
   # empty groups
   - '{{ slapd__debops_schema_path + "/groupofentries.ldif" }}'
