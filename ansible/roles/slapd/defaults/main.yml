@@ -1136,8 +1136,7 @@ slapd__structure_tasks:
       cn: '%admins'
       description: 'Grant privileged access to UNIX accounts in the "admins" UNIX group'
       sudoUser: '%admins'
-      sudoRunAsUser: 'ALL'
-      sudoRunAsGroup: 'ALL'
+      sudoRunAs: 'ALL'
       sudoHost: 'ALL'
       sudoCommand: 'ALL'
       sudoOption:
